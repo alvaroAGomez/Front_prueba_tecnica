@@ -1,0 +1,33 @@
+<div class="row p-5">
+    <div class="col-sm-12">
+        <table class="table table-striped">
+            <tr class="">
+                
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Legajo</th>
+                <th>DNI</th>
+                <th>Mail</th>
+                <th>Empresa</th>
+                <th>Nombre de Usuario</th>
+            </tr>
+            <tr *ngFor="let contratistas of listaContratistas">
+                
+                <td>{{contratistas.nombre}}</td>
+                <td>{{contratistas.apellido}}</td>
+                <td>{{contratistas.legajo}}</td>
+                <td>{{contratistas.dni}}</td>
+                <td>{{contratistas.email}}</td>
+                <td>{{contratistas.Empresas.nombre}}</td>
+                <td>{{contratistas.usuario.userName}}</td>
+                <td><button (click)="actualizarContratista(contratistas.dni)" mat-raised-button color="primary"><span class="material-icons">
+                    create
+                    </span></button></td>
+                <td><button (click)="eliminarContratista(contratistas.usuario.id)"  mat-raised-button color="primary"><span class="material-icons">
+                    delete
+                    </span></button></td>
+
+            </tr>
+        </table>
+    </div>
+</div>

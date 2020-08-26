@@ -1,0 +1,173 @@
+<h1 class="text-center">Alta de Contratista</h1>
+<div class="container">
+    <mat-card class="mat-elevation-z4">
+
+        <form [formGroup]="formContratista" (ngSubmit)="onSubmit(formContratista.value)">
+
+            <div class="row pb-3">
+                <div class="col-sm-4">
+                    <mat-form-field class="full-width">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput formControlName="nombre" [(ngModel)]='contratistaSeleccionado.nombre'>
+
+
+                        <mat-error *ngIf="nombre.hasError('required')">
+                            El nombre es <strong>requerido</strong>
+                        </mat-error>
+
+
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4">
+                    <mat-form-field class="full-width">
+                        <mat-label>Apellido</mat-label>
+                        <input matInput formControlName="apellido" [(ngModel)]='contratistaSeleccionado.apellido'>
+
+                        <mat-error *ngIf="apellido.hasError('required')">
+                            El apellido es <strong>requerido</strong>
+                        </mat-error>
+
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4">
+                    <mat-form-field class="full-width">
+                        <mat-label>Legajo</mat-label>
+                        <input matInput formControlName="legajo" [(ngModel)]='contratistaSeleccionado.legajo'>
+
+                        <mat-error *ngIf="legajo.hasError('required')">
+                            El legajo es <strong>requerido</strong>
+                        </mat-error>
+                        <mat-error *ngIf="(legajo.hasError('pattern'))">
+                            Solo se aceptan <strong>números</strong>
+                        </mat-error>
+
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row pb-3">
+                <div class="col-sm-4">
+                    <mat-form-field class="full-width">
+                        <mat-label>DNI</mat-label>
+                        <input matInput formControlName="dni" [(ngModel)]='contratistaSeleccionado.dni'>
+
+                        <mat-error *ngIf="dni.hasError('required')">
+                            El DNI es <strong>requerido</strong>
+                        </mat-error>
+                        <mat-error *ngIf="(dni.hasError('minlength')||dni.hasError('maxlength'))">
+                            Deben ser <strong>8 (ocho)</strong> números
+                        </mat-error>
+                        <mat-error *ngIf="(dni.hasError('pattern'))">
+                            Solo se aceptan <strong>números</strong>
+                        </mat-error>
+
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4">
+                    <mat-form-field class="full-width">
+                        <mat-label>Cuil</mat-label>
+                        <input matInput formControlName="cuil" [(ngModel)]='contratistaSeleccionado.cuil'>
+
+                        <mat-error *ngIf="cuil.hasError('required')">
+                            El CUIL es <strong>requerido</strong>
+                        </mat-error>
+                        <mat-error *ngIf="(cuil.hasError('minlength')||cuil.hasError('maxlength'))">
+                            Deben ser <strong>11 (once)</strong> números
+                        </mat-error>
+                        <mat-error *ngIf="(cuil.hasError('pattern'))">
+                            Solo se aceptan <strong>números</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4">
+                    <mat-form-field class="full-width">
+                        <mat-label>Mail</mat-label>
+                        <input matInput formControlName="email" [(ngModel)]='contratistaSeleccionado.email'>
+                        <mat-error *ngIf="email.hasError('required')">
+                            El mail es <strong>requerido</strong>
+                        </mat-error>
+                        <mat-error *ngIf="(email.hasError('email'))">
+                            Formato incorrecto
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row pb-3">
+                <div class="col-sm-6">
+                    <mat-form-field class="full-width">
+                        <mat-label>Celular</mat-label>
+                        <input matInput formControlName="celular" [(ngModel)]='contratistaSeleccionado.celular'>
+
+                        <mat-error *ngIf="celular.hasError('required')">
+                            El Celular es <strong>requerido</strong>
+                        </mat-error>
+                        <mat-error *ngIf="(celular.hasError('pattern'))">
+                            Solo se aceptan <strong>números</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-6">
+                    <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Empresa</mat-label>
+                        <mat-select formControlName="idEmpresa" [(ngModel)]='contratistaSeleccionado.idEmpresa'>
+                            <mat-option *ngFor="let empresa of empresas" [value]="empresa.id">
+                                {{empresa.nombre}}
+                            </mat-option>
+
+                        </mat-select>
+
+                        <mat-error *ngIf="idEmpresa.hasError('required')">
+                            La empresa es <strong>requerida</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+
+            </div>
+            <div class="row pb-3">
+                <div class="col-sm-6">
+                    <mat-form-field class="full-width">
+                        <mat-label>Nombre de Usuario</mat-label>
+                        <input matInput formControlName="userName">
+                        <mat-error *ngIf="userName.hasError('required')">
+                            El nombre de usuario es <strong>requerido</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-6">
+                    <mat-form-field class="full-width">
+                        <mat-label>Contraseña</mat-label>
+                        <input type="password" matInput formControlName="password" [value]="this.passwordGenerate"
+                            [type]="hide ? 'password': 'text'">
+                        <i class="material-icons" matSuffix (click)="hide=!hide">
+                            {{hide ? 'visibility': 'visibility_off' }}
+                        </i>
+
+
+                        <mat-error *ngIf="password.hasError('required')">
+                            La Contraseña es <strong>requerido</strong>
+                        </mat-error>
+                        <mat-error *ngIf="(password.hasError('pattern'))">
+                            La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una
+                            minúscula y al menos una mayúscula.
+                        </mat-error>
+
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-sm-4" style="display: none;">
+                <mat-form-field class="full-width">
+                    <mat-label>Usuario</mat-label>
+                    <input matInput formControlName="idUsuario" [(ngModel)]='this.contratistaSeleccionado.idUsuario'>
+                </mat-form-field>
+            </div>
+
+
+            <button type="submit" mat-raised-button color="primary">Guardar</button>
+
+
+            <!--<button type="button" mat-raised-button (click)="crearPass()" color="primary">Generar Contraseña</button>-->
+        </form>
+
+    </mat-card>
+</div>
+<app-listado-contratistas></app-listado-contratistas>

@@ -1,0 +1,31 @@
+<div >
+    <mat-card class="mat-elevation-z4">
+    
+        <mat-card-title>Iniciar Sesion</mat-card-title>
+    
+    <mat-card-content class="">
+        <form [formGroup]="formLogin" (ngSubmit)="login(formLogin.value)">
+            <mat-form-field class="full-width">
+                            <input matInput placeholder="Username" formControlName="userName" required>
+                        </mat-form-field>
+            <mat-form-field class="full-width">
+                            <input matInput placeholder="Password" type="password" formControlName="password" required>
+                        </mat-form-field>
+        
+
+            <mat-card-actions>
+                <button mat-raised-button type="submit" color="primary">Iniciar Sesion</button>
+            </mat-card-actions>
+        </form>
+    </mat-card-content>
+</mat-card>
+</div>
+
+<br>
+
+
+
+
+  
+
+
